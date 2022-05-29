@@ -39,8 +39,8 @@ For registered users, I provided some more features for their recommendations. A
 # local setup
 pip install -r requirements.txt (to install all the dependencies) <br />
 Start your server <br />
-python main.py (to start the server)
-make two tables in XAMPP server (movieuserdata,likemovie)
+python main.py (to start the server) <br />
+make two tables in XAMPP server (movieuserdata,likemovie) <br />
 
 
 Note : Due To Large Data I am Unable to Upload credits.csv file so you can access it by here <br />
