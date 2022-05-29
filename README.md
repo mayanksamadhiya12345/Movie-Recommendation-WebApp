@@ -7,8 +7,7 @@
 
 Built this project for Microsoft Engage 2022 mentorship program
 
-[live project link](https://www.google.com)
-# Project-working video link
+[Project-working video link](https://www.google.com)
 [documentation link](https://docs.google.com/document/d/1lUxrAwOHD4NpXEiNzpjfIm82YD7fBnIbhQVDbYPGP0o/edit?usp=sharing)
 
 
