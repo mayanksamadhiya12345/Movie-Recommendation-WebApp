@@ -40,3 +40,7 @@ For registered users, I provided some more features for their recommendations. A
 pip install -r requirements.txt (to install all the dependencies) <br />
 Start your server <br />
 python main.py (to start the server)
+
+
+Note : Due To Large Data I am Unable to Upload credits.csv file so you can access it by here <br />
+[credits.csv](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset?select=credits.csv)
