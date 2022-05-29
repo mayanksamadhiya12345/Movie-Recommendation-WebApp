@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<!--[if IE 7]>
+<html class="ie ie7 no-js" lang="en-US">
+<![endif]-->
+<!--[if IE 8]>
+<html class="ie ie8 no-js" lang="en-US">
+<![endif]-->
+<!--[if !(IE 7) | !(IE 8)  ]><!-->
+<html lang="en" class="no-js">
+
+
+<head>
+	<!-- Basic need -->
+	<title>Movies Buster</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="">
+	<link rel="profile" href="#">
+
+	<!--Google Font-->
+	<link rel="stylesheet" href='http://fonts.googleapis.com/css?family=Dosis:400,700,500|Nunito:300,400,600' />
+	<!-- Mobile specific meta -->
+	<meta name=viewport content="width=device-width, initial-scale=1">
+	<meta name="format-detection" content="telephone-no">
+
+	<!-- CSS files -->
+	<link rel="stylesheet" href="static/css/plugins.css">
+	<link rel="stylesheet" href="static/css/style.css">
+
+	<style>
+		/* /the container must be positioned relative:/  */
+		.Mautocomplete {
+			position: relative;
+			display: inline-block;
+		}
+
+		input {
+			border: 1px solid transparent;
+			background-color: #f1f1f1;
+			padding: 10px;
+			font-size: 16px;
+		}
+
+		input[type=text] {
+			background-color: #f1f1f100;
+			width: 100%;
+		}
+
+		input[type=submit] {
+			background-color: DodgerBlue;
+			color: #fff;
+			cursor: pointer;
+		}
+
+		.Mautocomplete-items {
+			position: absolute;
+			border: 1px solid #d4d4d4;
+			border-bottom: none;
+			border-top: none;
+			z-index: 99;
+			/* /position the autocomplete items to be the same width as the container: /  */
+			top: 100%;
+			left: 0;
+			right: 50px;
+		}
+
+		.modal {
+			display: none;
+			position: fixed;
+			z-index: 1000;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
+			background: rgba(255, 255, 255, .8) url('http://i.stack.imgur.com/FhHRx.gif') 50% 50% no-repeat;
+		}
+
+		.Mautocomplete-items div {
+			margin-left: 50px;
+			padding: 10px;
+			cursor: pointer;
+			background-color: #434141;
+			border-bottom: 1px solid #d4d4d4;
+		}
+
+		/* /when hovering an item:/  */
+		.Mautocomplete-items div:hover {
+			background-color: #e9e9e9;
+		}
+
+		/* /when navigating through the items using the arrow keys:/  */
+		.Mautocomplete-active {
+			background-color: DodgerBlue !important;
+			color: #ffffff;
+		}
+	</style>
+
+</head>
+
+<body>
+
+
+	<!--preloading-->
+	<div id="preloader">
+		<img class="logo" src="static/images/logo.jpg" alt="" width="119" height="58">
+		<div id="status">
+			<span></span>
+			<span></span>
+		</div>
+	</div>
+	<!--end of preloading-->
+
+
+	<!--login form popup-->
+	<div class="login-wrapper" id="login-content">
+		<div class="login-content">
+			<a href="#" class="close">x</a>
+			<h3>Login</h3>
+			<form method="post" action="#">
+				<div class="row">
+					<label for="username">
+						Username:
+						<!-- pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" -->
+						<input type="text" name="username" id="username" placeholder="Enter name" />
+					</label>
+				</div>
+
+				<div class="row">
+					<label for="password">
+						Password:
+						<!-- pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" -->
+						<input type="password" name="password" id="password" placeholder="******" required="required" />
+					</label>
+				</div>
+				<div class="row">
+					<div class="remember">
+						<div>
+							<input type="checkbox" name="remember" value="Remember me"><span>Remember me</span>
+						</div>
+						<a href="#">Forget password ?</a>
+					</div>
+				</div>
+				<div class="row">
+					<button type="submit">Login</button>
+				</div>
+			</form>
+			<div class="row">
+				<p>Or via social</p>
+				<div class="social-btn-2">
+					<a class="fb" href="#"><i class="ion-social-facebook"></i>Facebook</a>
+					<a class="tw" href="#"><i class="ion-social-twitter"></i>twitter</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--end of login form popup-->
+
+
+	<!--signup form popup-->
+	<div class="login-wrapper" id="signup-content">
+		<div class="login-content">
+			<a href="#" class="close">x</a>
+			<h3>sign up</h3>
+			<form method="post" action="/signup">
+				<div class="row">
+					<label for="username-2">
+						Username:
+						<!-- pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" -->
+						<input type="text" name="username" id="username-2" placeholder="enter name"
+							required="required" />
+					</label>
+				</div>
+
+				<div class="row">
+					<label for="email-2">
+						your email:
+						<!-- pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" -->
+						<input type="email" name="email" id="email-2" placeholder="enter mail" required="required" />
+					</label>
+				</div>
+				<div class="row">
+					<label for="password-2">
+						Password:
+						<!-- pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" -->
+						<input type="password" name="password" id="password-2" placeholder="enter pass"
+							required="required" />
+					</label>
+				</div>
+				<div class="row">
+					<label for="repassword-2">
+						re-type Password:
+						<!-- pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" -->
+						<input type="password" name="cpassword" id="repassword-2" placeholder="" required="required" />
+					</label>
+				</div>
+				<div class="row">
+					<button type="submit">sign up</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<!--end of signup form popup-->
+
+
+	<!-- BEGIN | Header -->
+	<header class="ht-header">
+		<div class="container">
+			<nav class="navbar navbar-default navbar-custom">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header logo">
+					<div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<div id="nav-icon1">
+							<span></span>
+							<span></span>
+							<span></span>
+						</div>
+					</div>
+					<a href="#"><img class="logo" src="static/images/logo.jpg" alt="" width="119" height="58"></a>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav flex-child-menu menu-left">
+						<li class="hidden">
+							<a href="#page-top"></a>
+						</li>
+						<li class="dropdown first">
+							<a href="#">
+								<h5>Home</h5>
+							</a>
+						</li>
+					</ul>
+
+					<ul class="nav navbar-nav flex-child-menu menu-right">
+						<li><a href="#">Help</a></li>
+						<li class="loginLink"><a href="#"> Welcome {{current_user.username}}</a></li>
+						<li class=""><a href="/logout">logout</a></li>
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</nav>
+
+			<!-- top search form -->
+			<form method="post" action="/searchdash" autocomplete="off">
+				<div class="top-search">
+					<select>
+						<option value="united">Movies</option>
+					</select>
+					<input id="myInput" type="text" name="movie" placeholder="Search for a movie">
+					<button type="submit" class="mayank button"><i class="fa fa-search" aria-hidden="true"></i>
+					</button>
+				</div>
+			</form>
+		</div>
+	</header>
+	<!-- END | Header -->
+
+	<!-- Movie Container -->
+	<div class="slider movie-items">
+		<div class="container">
+			<div class="row">
+				<!-- <div class="social-link">
+				<p>Follow us: </p>
+				<a href="#"><i class="ion-social-facebook"></i></a>
+				<a href="#"><i class="ion-social-twitter"></i></a>
+				<a href="#"><i class="ion-social-googleplus"></i></a>
+				<a href="#"><i class="ion-social-youtube"></i></a>
+			</div> -->
+
+
+				<div class="slick-multiItemSlider">
+
+					{% if postsdata|length > 0 %}
+					{% for i in range(0,1) %}
+					<div class="movie-item">
+
+
+						<div class="mv-img">
+							<a href="#"><img src="{{postsdata[i][1]}}" alt="" width="285" height="437"></a>
+						</div>
+
+						<form method="post" action="/information2">
+							<input type="hidden" name="movie" value="{{postsdata[i][0]}}">
+							<button style="padding-bottom: 30px; width: fit-content; font-size: initial; color: white;
+							border: transparent;" class="hvr-inner" type="submit"> view more</button>
+						</form>
+
+						<div class="title-in">
+							<div class="cate">
+								<span class="yell"><a href="#">{{postsdata[i][4][0]}}</a></span>
+							</div>
+							<h6><a href="#">{{postsdata[i][0]}}</a></h6>
+							<p><i class="ion-android-star"></i><span>{{postsdata[i][2]}}</span> /10</p>
+						</div>
+					</div>
+					{% endfor %}
+					{% else %}
+					<div class="movie-item">
+						<div class="mv-img">
+							<a href="#"><img src="static/images/uploads/slider2.jpg" alt="" width="285"
+									height="437"></a>
+						</div>
+						<div class="title-in">
+							<div class="cate">
+								<span class="yell"><a href="#">action</a></span>
+							</div>
+							<h6><a href="#">The revenant</a></h6>
+							<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+						</div>
+					</div>
+					<div class="movie-item">
+						<div class="mv-img">
+							<a href="#"><img src="static/images/uploads/slider3.jpg" alt="" width="285"
+									height="437"></a>
+						</div>
+						<div class="title-in">
+							<div class="cate">
+								<span class="green"><a href="#">comedy</a></span>
+							</div>
+							<h6><a href="#">Die hard</a></h6>
+							<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+						</div>
+					</div>
+					<div class="movie-item">
+						<div class="mv-img">
+							<a href="#"><img src="static/images/uploads/slider4.jpg" alt="" width="285"
+									height="437"></a>
+						</div>
+						<div class="title-in">
+							<div class="cate">
+								<span class="blue"><a href="#">Sci-fi</a></span> <span class="orange"><a
+										href="#">advanture</a></span>
+							</div>
+							<h6><a href="#">The walk</a></h6>
+							<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+						</div>
+					</div>
+					<div class="movie-item">
+						<div class="mv-img">
+							<a href="#"><img src="static/images/uploads/slider1.jpg" alt="" width="285"
+									height="437"></a>
+						</div>
+						<div class="title-in">
+							<div class="cate">
+								<span class="blue"><a href="#">Sci-fi</a></span>
+							</div>
+							<h6><a href="#">Interstellar</a></h6>
+							<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+						</div>
+					</div>
+					<div class="movie-item">
+						<div class="mv-img">
+							<a href="#"><img src="static/images/uploads/slider2.jpg" alt="" width="285"
+									height="437"></a>
+						</div>
+						<div class="title-in">
+							<div class="cate">
+								<span class="yell"><a href="#">action</a></span>
+							</div>
+							<h6><a href="#">The revenant</a></h6>
+							<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+						</div>
+					</div>
+					<div class="movie-item">
+						<div class="mv-img">
+							<img src="static/images/uploads/slider3.jpg" alt="" width="285" height="437">
+						</div>
+						<div class="title-in">
+							<div class="cate">
+								<span class="green"><a href="#">comedy</a></span>
+							</div>
+							<h6><a href="#">Die hard</a></h6>
+							<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+						</div>
+					</div>
+					<div class="movie-item">
+						<div class="mv-img">
+							<img src="static/images/uploads/slider4.jpg" alt="" width="285" height="437">
+						</div>
+						<div class="title-in">
+							<div class="cate">
+								<span class="blue"><a href="#">Sci-fi</a></span> <span class="orange"><a
+										href="#">advanture</a></span>
+							</div>
+							<h6><a href="#">The walk</a></h6>
+							<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+						</div>
+					</div>
+					<div class="movie-item">
+						<div class="mv-img">
+							<img src="static/images/uploads/slider3.jpg" alt="" width="285" height="437">
+						</div>
+						<div class="title-in">
+							<div class="cate">
+								<span class="green"><a href="#">comedy</a></span>
+							</div>
+							<h6><a href="#">Die hard</a></h6>
+							<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+						</div>
+					</div>
+					{% endif %}
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end of Movie Container -->
+
+
+	<!-- Recommened Movie Container -->
+	<div class="movie-items">
+		<div class="container">
+			<div class="row ipad-width">
+				<div class="col-md-8">
+					<div class="title-hd">
+						<h2>Recommendation</h2>
+						<a href="#" class="viewall">Go Top <i class="ion-ios-arrow-right"></i></a>
+					</div>
+					<div class="tabs">
+						<div class="tab-content">
+							<div id="tab1" class="tab active">
+
+								<!-- Row 1 of Recommendations -->
+								<div class="row">
+									<div class="slick-multiItem">
+
+										{% if postsdata|length > 0 %}
+										{% for i in range(1,5) %}
+										<div class="slide-it">
+											<div class="movie-item">
+												<div class="mv-img">
+													<img src="{{postsdata[i][1]}}" alt="" width="185" height="284">
+												</div>
+												<form method="post" action="/information2">
+													<input type="hidden" name="movie" value="{{postsdata[i][0]}}">
+													<button style="padding-bottom: 30px; width: fit-content; font-size: initial; color: white;
+							border: transparent;" class="hvr-inner" type="submit"> view more</button>
+												</form>
+												<div class="title-in">
+													<h6><a href="#">{{postsdata[i][0]}}</a></h6>
+													<p><i class="ion-android-star"></i><span>{{postsdata[i][2]}}</span>
+														/10</p>
+												</div>
+											</div>
+										</div>
+										{% endfor %}
+										{% endif %}
+									</div>
+								</div>
+								<br> <br>
+								<!-- Row 2 of Recommendations -->
+								<div class="row">
+									<div class="slick-multiItem">
+
+										{% if postsdata|length > 0 %}
+										{% for i in range(5,9) %}
+										<div class="slide-it">
+											<div class="movie-item">
+												<div class="mv-img">
+													<img src="{{postsdata[i][1]}}" alt="" width="185" height="284">
+												</div>
+												<form method="post" action="/information2">
+													<input type="hidden" name="movie" value="{{postsdata[i][0]}}">
+													<button style="padding-bottom: 30px; width: fit-content; font-size: initial; color: white;
+							border: transparent;" class="hvr-inner" type="submit"> view more</button>
+												</form>
+												<div class="title-in">
+													<h6><a href="#">{{postsdata[i][0]}}</a></h6>
+													<p><i class="ion-android-star"></i><span>{{postsdata[i][2]}}</span>
+														/10</p>
+												</div>
+											</div>
+										</div>
+										{% endfor %}
+										{% endif %}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-4">
+					<div class="sidebar">
+						<div class="celebrities">
+							<h4 class="sb-title">Spotlight Celebrities</h4>
+
+							{% if postsdata|length > 0 %}
+							{% for i in range(0,3) %}
+							<div class="celeb-item">
+								<a href="#"><img style="border: 0; height: auto;max-width: 20%;
+									vertical-align: middle;" src="{{postsdata[0][9][i][2]}}" alt=""></a>
+								<div class="celeb-author">
+									<h6><a href="#">{{postsdata[0][9][i][0]}}</a></h6>
+									<span>Actor</span>
+								</div>
+							</div>
+							{% endfor %}
+							{% endif %}
+
+							<a href="#" class="btn">Go to Top<i class="ion-ios-arrow-right"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end of Recommened Movie Container -->
+
+
+
+
+
+	<!-- Footer Section -->
+	<footer class="ht-footer">
+		<div class="container">
+			<div class="flex-parent-ft">
+				<div class="flex-child-ft item1">
+					<a href="#"><img class="logo" src="static/images/logo.jpg" alt=""></a>
+					<p>Kothri, Bhopal<br>
+						MP, PIN 466114</p>
+					<p>Made By <a href="#">MAYANK</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="ft-copyright">
+			<div class="backtotop">
+				<p><a href="#" id="back-to-top">Back to top <i class="ion-ios-arrow-thin-up"></i></a></p>
+			</div>
+		</div>
+	</footer>
+	<!-- end of footer section-->
+
+	<script src="static/js/jquery.js"></script>
+	<script src="static/js/plugins.js"></script>
+	<script src="static/js/plugins2.js"></script>
+	<script src="static/js/custom.js"></script>
+
+
+	<script>
+		function autocomplete(inp, arr) {
+			/*the autocomplete function takes two arguments,
+			the text field element and an array of possible autocompleted values:*/
+			var currentFocus;
+			// /execute a function when someone writes in the text field:/
+			inp.addEventListener("input", function (e) {
+				var a, b, i, val = this.value;
+				// /close any already open lists of autocompleted values/
+				closeAllLists();
+				if (!val) { return false; }
+				currentFocus = -1;
+				// /create a DIV element that will contain the items (values):/
+				a = document.createElement("DIV");
+				a.setAttribute("id", this.id + "Mautocomplete-list");
+				a.setAttribute("class", "Mautocomplete-items");
+				// /append the DIV element as a child of the autocomplete container:/
+				this.parentNode.appendChild(a);
+				// /for each item in the array.../
+				for (i = 0; i < arr.length; i++) {
+					// /check if the item starts with the same letters as the text field value:/
+					if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+						// /create a DIV element for each matching element:/
+						b = document.createElement("DIV");
+						b.style.color = "deepskyblue";
+						// /make the matching letters bold:/
+						b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+						b.innerHTML += arr[i].substr(val.length);
+						// /insert a input field that will hold the current array item's value:/
+						b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+						// /execute a function when someone clicks on the item value (DIV element):/
+						b.addEventListener("click", function (e) {
+							// /insert the value for the autocomplete text field:/
+							inp.value = this.getElementsByTagName("input")[0].value;
+							/*close the list of autocompleted values,
+							(or any other open lists of autocompleted values:*/
+							closeAllLists();
+						});
+						a.appendChild(b);
+					}
+				}
+			});
+			// /execute a function presses a key on the keyboard:/
+			inp.addEventListener("keydown", function (e) {
+				var x = document.getElementById(this.id + "autocomplete-list");
+				if (x) x = x.getElementsByTagName("div");
+				if (e.keyCode == 40) {
+					/*If the arrow DOWN key is pressed,
+					increase the currentFocus variable:*/
+					currentFocus++;
+					// /and and make the current item more visible:/
+					addActive(x);
+				} else if (e.keyCode == 38) { //up
+					/*If the arrow UP key is pressed,
+					decrease the currentFocus variable:*/
+					currentFocus--;
+					// /and and make the current item more visible:/
+					addActive(x);
+				} else if (e.keyCode == 13) {
+					// /If the ENTER key is pressed, prevent the form from being submitted,/
+					e.preventDefault();
+					if (currentFocus > -1) {
+						// /and simulate a click on the "active" item:/
+						if (x) x[currentFocus].click();
+					}
+				}
+			});
+			function addActive(x) {
+				// /a function to classify an item as "active":/
+				if (!x) return false;
+				// /start by removing the "active" class on all items:/
+				removeActive(x);
+				if (currentFocus >= x.length) currentFocus = 0;
+				if (currentFocus < 0) currentFocus = (x.length - 1);
+				// /add class "autocomplete-active":/
+				x[currentFocus].classList.add("Mautocomplete-active");
+			}
+			function removeActive(x) {
+				// /a function to remove the "active" class from all autocomplete items:/
+				for (var i = 0; i < x.length; i++) {
+					x[i].classList.remove("Mautocomplete-active");
+				}
+			}
+			function closeAllLists(elmnt) {
+				/*close all autocomplete lists in the document,
+				except the one passed as an argument:*/
+				var x = document.getElementsByClassName("Mautocomplete-items");
+				for (var i = 0; i < x.length; i++) {
+					if (elmnt != x[i] && elmnt != inp) {
+						x[i].parentNode.removeChild(x[i]);
+					}
+				}
+			}
+			// /execute a function when someone clicks in the document:/
+			document.addEventListener("click", function (e) {
+				closeAllLists(e.target);
+			});
+		}
+
+		// /An array containing all the country names in the world:/
+		var movies = ['avatar',
+			"pirates of the caribbean: at world's end",
+			'spectre',
+			'the dark knight rises',
+			'john carter',
+			'spider-man 3',
+			'tangled',
+			'avengers: age of ultron',
+			'harry potter and the half-blood prince',
+			'batman v superman: dawn of justice',
+			'superman returns',
+			'quantum of solace',
+			"pirates of the caribbean: dead man's chest",
+			'the lone ranger',
+			'man of steel',
+			'the chronicles of narnia: prince caspian',
+			'the avengers',
+			'pirates of the caribbean: on stranger tides',
+			'men in black 3',
+			'the hobbit: the battle of the five armies',
+			'the amazing spider-man',
+			'robin hood',
+			'the hobbit: the desolation of smaug',
+			'the golden compass',
+			'king kong',
+			'titanic',
+			'captain america: civil war',
+			'battleship',
+			'jurassic world',
+			'skyfall',
+			'spider-man 2',
+			'iron man 3',
+			'alice in wonderland',
+			'x-men: the last stand',
+			'monsters university',
+			'transformers: revenge of the fallen',
+			'transformers: age of extinction',
+			'oz: the great and powerful',
+			'the amazing spider-man 2',
+			'tron: legacy',
+			'cars 2',
+			'green lantern',
+			'toy story 3',
+			'terminator salvation',
+			'furious 7',
+			'world war z',
+			'x-men: days of future past',
+			'star trek into darkness',
+			'jack the giant slayer',
+			'the great gatsby',
+			'prince of persia: the sands of time',
+			'pacific rim',
+			'transformers: dark of the moon',
+			'indiana jones and the kingdom of the crystal skull',
+			'the good dinosaur',
+			'brave',
+			'star trek beyond',
+			'wall·e',
+			'rush hour 3',
+			'2012',
+			'a christmas carol',
+			'jupiter ascending',
+			'the legend of tarzan',
+			'the chronicles of narnia: the lion, the witch and the wardrobe',
+			'x-men: apocalypse',
+			'the dark knight',
+			'up',
+			'monsters vs aliens',
+			'iron man',
+			'hugo',
+			'wild wild west',
+			'the mummy: tomb of the dragon emperor',
+			'suicide squad',
+			'evan almighty',
+			'edge of tomorrow',
+			'waterworld',
+			'g.i. joe: the rise of cobra',
+			'inside out',
+			'the jungle book',
+			'iron man 2',
+			'snow white and the huntsman',
+			'maleficent',
+			'dawn of the planet of the apes',
+			'the lovers',
+			'47 ronin',
+			'captain america: the winter soldier',
+			'shrek forever after',
+			'tomorrowland',
+			'big hero 6',
+			'wreck-it ralph',
+			'the polar express',
+			'independence day: resurgence',
+			'how to train your dragon',
+			'terminator 3: rise of the machines',
+			'guardians of the galaxy',
+			'interstellar',
+			'inception',
+			'shin godzilla',
+			'the hobbit: an unexpected journey',
+			'the fast and the furious',
+			'the curious case of benjamin button',
+			'x-men: first class',
+			'the hunger games: mockingjay - part 2',
+			"the sorcerer's apprentice",
+			'poseidon',
+			'alice through the looking glass',
+			'shrek the third',
+			'warcraft',
+			'terminator genisys',
+			'the chronicles of narnia: the voyage of the dawn treader',
+			'pearl harbor',
+			'transformers',
+			'alexander',
+			'harry potter and the order of the phoenix',
+			'harry potter and the goblet of fire',
+			'hancock',
+			'i am legend',
+			'charlie and the chocolate factory',
+			'ratatouille',
+			'batman begins',
+			'madagascar: escape 2 africa',
+			'night at the museum: battle of the smithsonian',
+			'x-men origins: wolverine',
+			'the matrix revolutions',
+			'frozen',
+			'the matrix reloaded',
+			'thor: the dark world',
+			'mad max: fury road',
+			'angels & demons',
+			'thor',
+			'bolt',
+			'g-force',
+			'wrath of the titans',
+			'dark shadows',
+			'mission: impossible - rogue nation',
+			'the wolfman',
+			'bee movie',
+			'kung fu panda 2',
+			'the last airbender',
+			'mission: impossible iii',
+			'white house down',
+			'mars needs moms',
+			'flushed away',
+			'pan',
+			'mr. peabody & sherman',
+			'troy',
+			"madagascar 3: europe's most wanted",
+			'die another day',
+			'ghostbusters',
+			'armageddon',
+			'men in black ii',
+			'beowulf',
+			'kung fu panda 3',
+			'mission: impossible - ghost protocol',
+			'rise of the guardians',
+			'fun with dick and jane',
+			'the last samurai',
+			'exodus: gods and kings',
+			'star trek',
+			'spider-man',
+			'how to train your dragon 2',
+			'gods of egypt',
+			'stealth',
+			'watchmen',
+			'lethal weapon 4',
+			'hulk',
+			'g.i. joe: retaliation',
+			'sahara',
+			'final fantasy: the spirits within',
+			'captain america: the first avenger',
+			'the world is not enough',
+			'master and commander: the far side of the world',
+			'the twilight saga: breaking dawn - part 2',
+			'happy feet two',
+			'the incredible hulk',
+			'the bfg',
+			'the revenant',
+			'turbo',
+			'rango',
+			'penguins of madagascar',
+			'the bourne ultimatum',
+			'kung fu panda',
+			'ant-man',
+			'the hunger games: catching fire',
+			'home',
+			'war of the worlds',
+			'bad boys ii',
+			'salt',
+			'noah',
+			'the adventures of tintin',
+			'harry potter and the prisoner of azkaban',
+			'australia',
+			'after earth',
+			'dinosaur',
+			'night at the museum: secret of the tomb',
+			'megamind',
+			"harry potter and the philosopher's stone",
+			'r.i.p.d.',
+			'pirates of the caribbean: the curse of the black pearl',
+			'the hunger games: mockingjay - part 1',
+			'the da vinci code',
+			'rio 2',
+			'x2',
+			'fast five',
+			'sherlock holmes: a game of shadows',
+			'clash of the titans',
+			'total recall',
+			'the 13th warrior',
+			'the bourne legacy',
+			'batman & robin',
+			'how the grinch stole christmas',
+			'the day after tomorrow',
+			'mission: impossible ii',
+			'the perfect storm',
+			'fantastic 4: rise of the silver surfer',
+			'life of pi',
+			'ghost rider',
+			'jason bourne',
+			"charlie's angels: full throttle",
+			'prometheus',
+			'stuart little 2',
+			'elysium',
+			'the chronicles of riddick',
+			'robocop',
+			'speed racer',
+			'how do you know',
+			'knight and day',
+			'oblivion',
+			'star wars: episode iii - revenge of the sith',
+			'star wars: episode ii - attack of the clones',
+			'monsters, inc.',
+			'the wolverine',
+			'star wars: episode i - the phantom menace',
+			'the croods',
+			'asterix at the olympic games',
+			'windtalkers',
+			"the huntsman: winter's war",
+			'teenage mutant ninja turtles',
+			'gravity',
+			"dante's peak",
+			'teenage mutant ninja turtles: out of the shadows',
+			'fantastic four',
+			'night at the museum',
+			'san andreas',
+			'tomorrow never dies',
+			'the patriot',
+			"ocean's twelve",
+			'mr. & mrs. smith',
+			'insurgent',
+			'the aviator',
+			"gulliver's travels",
+			'the green hornet',
+			'300: rise of an empire',
+			'the smurfs',
+			'home on the range',
+			'allegiant',
+			'real steel',
+			'the smurfs 2',
+			'speed 2: cruise control',
+			"ender's game",
+			'live free or die hard',
+			'the lord of the rings: the fellowship of the ring',
+			'around the world in 80 days',
+			'ali',
+			'the cat in the hat',
+			'i, robot',
+			'kingdom of heaven',
+			'stuart little',
+			'the princess and the frog',
+			'the martian',
+			'the island',
+			'town & country',
+			'gone in sixty seconds',
+			'gladiator',
+			'minority report',
+			'harry potter and the chamber of secrets',
+			'casino royale',
+			'planet of the apes',
+			'terminator 2: judgment day',
+			'public enemies',
+			'american gangster',
+			'true lies',
+			'the taking of pelham 1 2 3',
+			'little fockers',
+			'the other guys',
+			'eraser',
+			'django unchained',
+			'the hunchback of notre dame',
+			"the emperor's new groove",
+			'the expendables 2',
+			'national treasure',
+			'eragon',
+			'where the wild things are',
+			'epic',
+			'the tourist',
+			'end of days',
+			'blood diamond',
+			'the wolf of wall street',
+			'batman forever',
+			'starship troopers',
+			'cloud atlas',
+			"legend of the guardians: the owls of ga'hoole",
+			'catwoman',
+			'hercules',
+			'treasure planet',
+			'land of the lost',
+			'the expendables 3',
+			'point break',
+			'son of the mask',
+			'in the heart of the sea',
+			'the adventures of pluto nash',
+			'green zone',
+			'the peanuts movie',
+			'the spanish prisoner',
+			'the mummy returns',
+			'gangs of new york',
+			'the flowers of war',
+			"surf's up",
+			'the stepford wives',
+			'black hawk down',
+			'the campaign',
+			'the fifth element',
+			'sex and the city 2',
+			'the road to el dorado',
+			'ice age: continental drift',
+			'cinderella',
+			'the lovely bones',
+			'finding nemo',
+			'the lord of the rings: the return of the king',
+			'the lord of the rings: the two towers',
+			'seventh son',
+			'lara croft: tomb raider',
+			'transcendence',
+			'jurassic park iii',
+			'rise of the planet of the apes',
+			'the spiderwick chronicles',
+			'a good day to die hard',
+			'the alamo',
+			'the incredibles',
+			'cutthroat island',
+			'percy jackson & the olympians: the lightning thief',
+			'men in black',
+			'toy story 2',
+			'unstoppable',
+			'rush hour 2',
+			'what lies beneath',
+			'cloudy with a chance of meatballs',
+			'ice age: dawn of the dinosaurs',
+			'the secret life of walter mitty',
+			"charlie's angels",
+			'the departed',
+			'mulan',
+			'tropic thunder',
+			'the girl with the dragon tattoo',
+			'die hard: with a vengeance',
+			'sherlock holmes',
+			'ben-hur',
+			'atlantis: the lost empire',
+			'alvin and the chipmunks: the road chip',
+			'valkyrie',
+			"you don't mess with the zohan",
+			'pixels',
+			'a.i. artificial intelligence',
+			'the haunted mansion',
+			'contact',
+			'hollow man',
+			'the interpreter',
+			'percy jackson: sea of monsters',
+			'lara croft tomb raider: the cradle of life',
+			'now you see me 2',
+			'the saint',
+			'spy game',
+			'mission to mars',
+			'rio',
+			'bicentennial man',
+			'volcano',
+			"the devil's own",
+			'k-19: the widowmaker',
+			'conan the barbarian',
+			'cinderella man',
+			'the nutcracker: the untold story',
+			'seabiscuit',
+			'twister',
+			'cast away',
+			'happy feet',
+			'the bourne supremacy',
+			'air force one',
+			"ocean's eleven",
+			'the three musketeers',
+			'hotel transylvania',
+			'enchanted',
+			'safe house',
+			'102 dalmatians',
+			'tower heist',
+			'the holiday',
+			'enemy of the state',
+			"it's complicated",
+			"ocean's thirteen",
+			'open season',
+			'divergent',
+			'enemy at the gates',
+			'the rundown',
+			'last action hero',
+			'memoirs of a geisha',
+			'the fast and the furious: tokyo drift',
+			'arthur christmas',
+			'meet joe black',
+			'collateral damage',
+			'all that jazz',
+			'mirror mirror',
+			'scott pilgrim vs. the world',
+			'the core',
+			'nutty professor ii: the klumps',
+			'scooby-doo',
+			'dredd',
+			'click',
+			'creepshow',
+			'cats & dogs 2 : the revenge of kitty galore',
+			'jumper',
+			'hellboy ii: the golden army',
+			'zodiac',
+			'the 6th day',
+			'bruce almighty',
+			'the expendables',
+			'mission: impossible',
+			'the hunger games',
+			'the hangover part ii',
+			'batman returns',
+			'over the hedge',
+			'lilo & stitch',
+			"charlotte's web",
+			'deep impact',
+			'red 2',
+			'the longest yard',
+			'alvin and the chipmunks: chipwrecked',
+			'grown ups 2',
+			'get smart',
+			"something's gotta give",
+			'shutter island',
+			'four christmases',
+			'robots',
+			'face/off',
+			'bedtime stories',
+			'road to perdition',
+			'just go with it',
+			'con air',
+			'eagle eye',
+			'cold mountain',
+			'the book of eli',
+			'flubber',
+			'the haunting',
+			'space jam',
+			'the pink panther',
+			'the day the earth stood still',
+			'conspiracy theory',
+			'fury',
+			'six days seven nights',
+			'yogi bear',
+			'spirit: stallion of the cimarron',
+			'zookeeper',
+			'lost in space',
+			'the manchurian candidate',
+			'déjà vu',
+			'hotel transylvania 2',
+			'fantasia 2000',
+			'the time machine',
+			'mighty joe young',
+			'swordfish',
+			'the legend of zorro',
+			'what dreams may come',
+			'little nicky',
+			'the brothers grimm',
+			'mars attacks!',
+			'evolution',
+			'the edge',
+			'surrogates',
+			'thirteen days',
+			'daylight',
+			'walking with dinosaurs',
+			'battlefield earth',
+			'looney tunes: back in action',
+			'nine',
+			'timeline',
+			'the postman',
+			'babe: pig in the city',
+			'the last witch hunter',
+			'red planet',
+			'arthur and the invisibles',
+			'oceans',
+			'a sound of thunder',
+			'pompeii',
+			'a beautiful mind',
+			'the lion king',
+			'journey 2: the mysterious island',
+			'cloudy with a chance of meatballs 2',
+			'red dragon',
+			'hidalgo',
+			'jack and jill',
+			'2 fast 2 furious',
+			'the little prince',
+			'the invasion',
+			'the adventures of rocky & bullwinkle',
+			'the secret life of pets',
+			'the league of extraordinary gentlemen',
+			'despicable me 2',
+			'independence day',
+			'the lost world: jurassic park',
+			'madagascar',
+			'children of men',
+			'x-men',
+			'wanted',
+			'the rock',
+			'ice age: the meltdown',
+			'50 first dates',
+			'hairspray',
+			'exorcist: the beginning',
+			'inspector gadget',
+			'now you see me',
+			'grown ups',
+			'the terminal',
+			'hotel for dogs',
+			'vertical limit',
+			"charlie wilson's war",
+			'shark tale',
+			'dreamgirls',
+			'be cool',
+			'munich',
+			'tears of the sun',
+			'killers',
+			'the man from u.n.c.l.e.',
+			'spanglish',
+			'monster house',
+			'bandits',
+			'first knight',
+			'anna and the king',
+			'immortals',
+			'hostage',
+			'titan a.e.',
+			'hollywood homicide',
+			'soldier',
+			'carriers',
+			'monkeybone',
+			'flight of the phoenix',
+			'unbreakable',
+			'minions',
+			'sucker punch',
+			'snake eyes',
+			'sphere',
+			'the angry birds movie',
+			"fool's gold",
+			'funny people',
+			'the kingdom',
+			'talladega nights: the ballad of ricky bobby',
+			'dr. dolittle 2',
+			'braveheart',
+			'jarhead',
+			'the simpsons movie',
+			'the majestic',
+			'driven',
+			'two brothers',
+			'the village',
+			'doctor dolittle',
+			'signs',
+			'shrek 2',
+			'cars',
+			'runaway bride',
+			'xxx',
+			'the spongebob movie: sponge out of water',
+			'ransom',
+			'inglourious basterds',
+			'hook',
+			'die hard 2',
+			's.w.a.t.',
+			'vanilla sky',
+			'lady in the water',
+			'avp: alien vs. predator',
+			'alvin and the chipmunks: the squeakquel',
+			'we were soldiers',
+			'olympus has fallen',
+			'star trek: insurrection',
+			'battle: los angeles',
+			'big fish',
+			'wolf',
+			'war horse',
+			'the monuments men',
+			'the abyss',
+			'wall street: money never sleeps',
+			'dracula untold',
+			'the siege',
+			'stardust',
+			'seven years in tibet',
+			'the dilemma',
+			'bad company',
+			'doom',
+			'i spy',
+			'underworld: awakening',
+			'rock of ages',
+			"hart's war",
+			'killer elite',
+			'rollerball',
+			'ballistic: ecks vs. sever',
+			'hard rain',
+			'osmosis jones',
+			"legends of oz: dorothy's return",
+			'blackhat',
+			'sky captain and the world of tomorrow',
+			'basic instinct 2',
+			'escape plan',
+			'the legend of hercules',
+			'the sum of all fears',
+			'the twilight saga: eclipse',
+			'the score',
+			'despicable me',
+			'money train',
+			'ted 2',
+			'agora',
+			'mystery men',
+			'hall pass',
+			'the insider',
+			'the finest hours',
+			'body of lies',
+			'dinner for schmucks',
+			'abraham lincoln: vampire hunter',
+			'entrapment',
+			'the x files',
+			'the last legion',
+			'saving private ryan',
+			'need for speed',
+			'what women want',
+			'ice age',
+			'dreamcatcher',
+			'lincoln',
+			'the matrix',
+			'apollo 13',
+			'the santa clause 2',
+			'les misérables',
+			"you've got mail",
+			'step brothers',
+			'the mask of zorro',
+			'due date',
+			'unbroken',
+			'space cowboys',
+			'cliffhanger',
+			'broken arrow',
+			'the kid',
+			'world trade center',
+			'mona lisa smile',
+			'the dictator',
+			'eyes wide shut',
+			'annie',
+			'focus',
+			'this means war',
+			'blade: trinity',
+			'red dawn',
+			'primary colors',
+			'resident evil: retribution',
+			'death race',
+			'the long kiss goodnight',
+			'proof of life',
+			'zathura: a space adventure',
+			'fight club',
+			'we are marshall',
+			'hudson hawk',
+			'lucky numbers',
+			'i, frankenstein',
+			'oliver twist',
+			'elektra',
+			'sin city: a dame to kill for',
+			'random hearts',
+			'everest',
+			'perfume: the story of a murderer',
+			'austin powers in goldmember',
+			'astro boy',
+			'jurassic park',
+			'wyatt earp',
+			'clear and present danger',
+			'dragon blade',
+			'little man',
+			'u-571',
+			'the american president',
+			'the love guru',
+			'3000 miles to graceland',
+			'the hateful eight',
+			'blades of glory',
+			'hop',
+			'300',
+			'meet the fockers',
+			'marley & me',
+			'the green mile',
+			'wild hogs',
+			'chicken little',
+			'gone girl',
+			'the bourne identity',
+			'goldeneye',
+			"the general's daughter",
+			'the truman show',
+			'the prince of egypt',
+			'daddy day care',
+			'2 guns',
+			'cats & dogs',
+			'the italian job',
+			'two weeks notice',
+			'antz',
+			'couples retreat',
+			'days of thunder',
+			'cheaper by the dozen 2',
+			'maze runner: the scorch trials',
+			'eat pray love',
+			'the family man',
+			'red',
+			'any given sunday',
+			'the horse whisperer',
+			'collateral',
+			'the scorpion king',
+			'ladder 49',
+			'jack reacher',
+			'deep blue sea',
+			'this is it',
+			'contagion',
+			'kangaroo jack',
+			'coraline',
+			'the happening',
+			'man on fire',
+			'the shaggy dog',
+			'starsky & hutch',
+			'jingle all the way',
+			'hellboy',
+			'a civil action',
+			'paranorman',
+			'the jackal',
+			'paycheck',
+			'up close & personal',
+			'the tale of despereaux',
+			'the tuxedo',
+			'under siege 2: dark territory',
+			'jack ryan: shadow recruit',
+			'joy',
+			'london has fallen',
+			'alien: resurrection',
+			'shooter',
+			'the boxtrolls',
+			'practical magic',
+			'the lego movie',
+			'miss congeniality 2: armed and fabulous',
+			'reign of fire',
+			'gangster squad',
+			'year one',
+			'invictus',
+			'state of play',
+			'duplicity',
+			'my favorite martian',
+			'the sentinel',
+			'planet 51',
+			'star trek: nemesis',
+			'intolerable cruelty',
+			'trouble with the curve',
+			'edge of darkness',
+			'the relic',
+			'analyze that',
+			'righteous kill',
+			'mercury rising',
+			'the soloist',
+			'the legend of bagger vance',
+			'almost famous',
+			'garfield: a tail of two kitties',
+			'xxx: state of the union',
+			'priest',
+			'sinbad: legend of the seven seas',
+			'event horizon',
+			'dragonfly',
+			'the black dahlia',
+			'flyboys',
+			'the last castle',
+			'supernova',
+			"winter's tale",
+			'the mortal instruments: city of bones',
+			'meet dave',
+			'dark water',
+			'edtv',
+			'inkheart',
+			'the spirit',
+			'mortdecai',
+			'in the name of the king: a dungeon siege tale',
+			'beyond borders',
+			'the great raid',
+			'deadpool',
+			'holy man',
+			'american sniper',
+			'goosebumps',
+			'just like heaven',
+			'the flintstones in viva rock vegas',
+			'rambo iii',
+			'leatherheads',
+			'the ridiculous 6',
+			'did you hear about the morgans?',
+			'the internship',
+			'resident evil: afterlife',
+			'red tails',
+			"the devil's advocate",
+			"that's my boy",
+			'dragonheart',
+			'after the sunset',
+			'ghost rider: spirit of vengeance',
+			"captain corelli's mandolin",
+			'the pacifier',
+			'walking tall',
+			'forrest gump',
+			'alvin and the chipmunks',
+			'meet the parents',
+			'pocahontas',
+			'superman',
+			'the nutty professor',
+			'hitch',
+			'george of the jungle',
+			'american wedding',
+			'captain phillips',
+			'date night',
+			'casper',
+			'the equalizer',
+			'maid in manhattan',
+			'crimson tide',
+			'the pursuit of happyness',
+			'flightplan',
+			'disclosure',
+			'city of angels',
+			'kill bill: vol. 1',
+			'bowfinger',
+			'kill bill: vol. 2',
+			'tango & cash',
+			'death becomes her',
+			'shanghai noon',
+			'executive decision',
+			"mr. popper's penguins",
+			'the forbidden kingdom',
+			'free birds',
+			'alien³',
+			'evita',
+			'ronin',
+			'the ghost and the darkness',
+			'paddington',
+			'the watch',
+			'the hunted',
+			'instinct',
+			'stuck on you',
+			'semi-pro',
+			'the pirates! in an adventure with scientists!',
+			'changeling',
+			'chain reaction',
+			'the fan',
+			'the phantom of the opera',
+			'elizabeth: the golden age',
+			'æon flux',
+			'gods and generals',
+			'turbulence',
+			'imagine that',
+			'muppets most wanted',
+			'thunderbirds',
+			'burlesque',
+			'a very long engagement',
+			'lolita',
+			'd-tox',
+			'blade ii',
+			'seven pounds',
+			'bullet to the head',
+			'the godfather: part iii',
+			'elizabethtown',
+			'you, me and dupree',
+			'superman ii',
+			'gigli',
+			"all the king's men",
+			'shaft',
+			'anastasia',
+			'moulin rouge!',
+			'domestic disturbance',
+			'black mass',
+			'flags of our fathers',
+			'law abiding citizen',
+			'beloved',
+			'lucky you',
+			'catch me if you can',
+			'zero dark thirty',
+			'the break-up',
+			'mamma mia!',
+			"valentine's day",
+			'the dukes of hazzard',
+			'the thin red line',
+			'the change-up',
+			'man on the moon',
+			'casino',
+			'from paris with love',
+			'bulletproof monk',
+			'me, myself & irene',
+			'barnyard',
+			'deck the halls',
+			'the twilight saga: new moon',
+			'shrek',
+			'the adjustment bureau',
+			'robin hood: prince of thieves',
+			'jerry maguire',
+			'ted',
+			'as good as it gets',
+			'patch adams',
+			'anchorman 2: the legend continues',
+			'mr. deeds',
+			'super 8',
+			'erin brockovich',
+			'how to lose a guy in 10 days',
+			'22 jump street',
+			'interview with the vampire',
+			'yes man',
+			'central intelligence',
+			'stepmom',
+			"daddy's home",
+			'into the woods',
+			'inside man',
+			'payback',
+			'congo',
+			'we bought a zoo',
+			'knowing',
+			'failure to launch',
+			'the ring two',
+			'crazy, stupid, love.',
+			'garfield',
+			'christmas with the kranks',
+			'moneyball',
+			'outbreak',
+			'non-stop',
+			'race to witch mountain',
+			'v for vendetta',
+			'shanghai knights',
+			'curious george',
+			'herbie fully loaded',
+			"don't say a word",
+			'hansel & gretel: witch hunters',
+			'unfaithful',
+			'i am number four',
+			'syriana',
+			'13 hours: the secret soldiers of benghazi',
+			'the book of life',
+			'firewall',
+			'absolute power',
+			'g.i. jane',
+			'the game',
+			'silent hill',
+			'the replacements',
+			'american reunion',
+			'the negotiator',
+			'into the storm',
+			'beverly hills cop iii',
+			'gremlins 2: the new batch',
+			'the judge',
+			'the peacemaker',
+			'resident evil: apocalypse',
+			'bridget jones: the edge of reason',
+			'out of time',
+			'on deadly ground',
+			'the adventures of sharkboy and lavagirl',
+			'the beach',
+			'raising helen',
+			'ninja assassin',
+			'for love of the game',
+			'striptease',
+			'marmaduke',
+			'hereafter',
+			'murder by numbers',
+			'assassins',
+			'hannibal rising',
+			'the story of us',
+			'the host',
+			'basic',
+			'blood work',
+			'the international',
+			'escape from l.a.',
+			'the iron giant',
+			'the life aquatic with steve zissou',
+			'free state of jones',
+			'the life of david gale',
+			'man of the house',
+			'run all night',
+			'eastern promises',
+			'into the blue',
+			'the messenger: the story of joan of arc',
+			'your highness',
+			'dream house',
+			'mad city',
+			"baby's day out",
+			'the scarlet letter',
+			'fair game',
+			'domino',
+			'jade',
+			'gamer',
+			'beautiful creatures',
+			'death to smoochy',
+			'zoolander 2',
+			'the big bounce',
+			'what planet are you from?',
+			'drive angry',
+			'street fighter: the legend of chun-li',
+			'the one',
+			'the adventures of ford fairlane'];
+
+		// /initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:/
+		autocomplete(document.getElementById("myInput"), movies);
+
+
+		$body = $("body");
+
+		$(document).on({
+			ajaxStart: function () { $body.addClass("loading"); },
+			ajaxStop: function () { $body.removeClass("loading"); }
+		});
+
+	</script>
+
+</body>
+
+
+</html>
