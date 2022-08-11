@@ -16,7 +16,7 @@ A Movie Recommendation web app which lets users register and search for a movie 
 
 
 # Tech Stack
-<strong>Frontrnd</strong> : HTML, CSS, JavaScript <br />
+<strong>Frontend</strong> : HTML, CSS, JavaScript <br />
 <strong>Backend</strong> : Flask, python <br />
 <strong>Database</strong> : MySQL <br />
 <strong>Important Packages Used</strong> : numpy, pandas, scikit-learn, seaborn, email, requests, re, contractions, nltk, ast, unique, index, BytesIO, dump, Flask, SQLAlchemy, CountVectorizer, TfidfVectorizer, cosine_similarity, NormalPredictor, surprise <br />
